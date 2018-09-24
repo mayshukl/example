@@ -1,0 +1,34 @@
+apply from: 'customplugin.gradle'
+
+task task1  {
+   group 'Custom Build'
+   description 'Custom Compilation'
+   println 'compiling source'
+}
+
+task task2(dependsOn: task1)  {
+	group 'Custom Build'
+	description 'Custom compile UT'
+   println 'compiling unit tests'
+}
+
+task task3(dependsOn: [task1, task2])  {
+	group 'Custom Build'
+	description 'Custom run ut'
+   println 'running unit tests'
+}
+
+task task4(dependsOn: [task1, task3]) {
+   group 'Custom Build'
+   description 'Custom build distribution'
+   println 'building the distribution'
+}
+
+task doTask {
+   doLast {
+      println 'In Last'
+   }
+   doFirst {
+      println 'In first'
+   }
+} 

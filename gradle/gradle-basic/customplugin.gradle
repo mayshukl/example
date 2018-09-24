@@ -1,0 +1,24 @@
+apply plugin: GreetingPlugin
+
+greeting {
+   message = 'Hi'
+   greeter = 'Gradle'
+}
+
+class GreetingPlugin implements Plugin<Project> {
+   void apply(Project project) {
+      project.extensions.create("greeting", GreetingPluginExtension)
+		
+      project.task('hello') << {
+	   description 'Produces a greeting'
+         println "${project.greeting.message} from ${project.greeting.greeter}"
+      }
+	  
+	  project.hello.group ='Welcome'
+   }
+}
+
+class GreetingPluginExtension {
+   String message
+   String greeter
+}
