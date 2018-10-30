@@ -1,0 +1,14 @@
+Element Collection
+
+1. This is used to define parent child relationship in domain model(Same as Many to one)
+
+2. This is used Embeddable entities. So life cycle of these object can not exist without their parent.
+
+3. This collection should be used only if the child entity is not associated with any other entity
+
+4. This gives very performant in case of chidren deletions.
+   Reason : in case of oneTomany association , hibernate loads the children in memory and delte the children one
+            by one . This generate one delete sql statement for one child child.But Elemetcollection
+            execute one delete statement to delete all children.
+
+5. PreRemove method will be ignored in case of Elemet Collection
