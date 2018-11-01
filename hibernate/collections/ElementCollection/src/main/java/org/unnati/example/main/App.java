@@ -1,7 +1,9 @@
 package org.unnati.example.main;
 
 import org.unnati.example.entities.Item;
+import org.unnati.example.entities.ItemDetails;
 import org.unnati.example.entities.ItemPrimaryDetail;
+import org.unnati.example.entities.ItemStockDetail;
 import org.unnati.example.transactionmanager.TxnManager;
 
 
@@ -60,53 +62,69 @@ public class App {
         }
         items.get(0).getItemPrimaryDetail().getItemNoOfItemSold().remove(dates.get(0));
 
+        ItemStockDetail itemStockDetailLastDay = new ItemStockDetail();
+        itemStockDetailLastDay.setStockOpenAt(10);
+        itemStockDetailLastDay.setStockIn(6);
+        itemStockDetailLastDay.setStockOut(5);
+        itemStockDetailLastDay.setStockCloseAt(11);
+
+        ItemStockDetail itemStockDetailToday = new ItemStockDetail();
+        itemStockDetailToday.setStockOpenAt(11);
+        itemStockDetailToday.setStockIn(6);
+        itemStockDetailToday.setStockOut(5);
+        itemStockDetailToday.setStockCloseAt(12);
+
+
+        ItemDetails itemDetails=new ItemDetails();
+        itemDetails.getItemStockDetail().put((new Date()),itemStockDetailToday);
+        itemDetails.getItemStockDetail().put(new Date((new Date()).getTime()-86400000),itemStockDetailLastDay) ;
+        items.get(0).setItemDetails(itemDetails);
 
         TxnManager.getTxnManager().save(items.get(0));
 
     }
 
 
-    public void printData(){
-       List<Item> items=  TxnManager.getTxnManager().getAll("Item",Item.class);
+    public void printData() {
+        List<Item> items = TxnManager.getTxnManager().getAll("Item", Item.class);
 
-       for (Item item :items){
-           ItemPrimaryDetail primaryDetail=item.getItemPrimaryDetail();
-           System.out.format("%10s%20s", "id", "name");
-           System.out.println();
-           System.out.format("%10s%20s", item.getId(), item.getName());
-           System.out.println();
-           System.out.format("%20s","AlishName");
-           System.out.println();
-           for(String alishName:primaryDetail.getItemAlishNames()) {
-               System.out.format("%20s",alishName);
-               System.out.println();
-           }
-           System.out.println();
-           System.out.format("%30s", "LogMessage");
-           System.out.println();
-           for(String auditLog:primaryDetail.getItemAuditLog()) {
-               System.out.format("%30s", auditLog);
-               System.out.println();
-           }
+        for (Item item : items) {
+            ItemPrimaryDetail primaryDetail = item.getItemPrimaryDetail();
+            System.out.format("%10s%20s", "id", "name");
+            System.out.println();
+            System.out.format("%10s%20s", item.getId(), item.getName());
+            System.out.println();
+            System.out.format("%20s", "AlishName");
+            System.out.println();
+            for (String alishName : primaryDetail.getItemAlishNames()) {
+                System.out.format("%20s", alishName);
+                System.out.println();
+            }
+            System.out.println();
+            System.out.format("%30s", "LogMessage");
+            System.out.println();
+            for (String auditLog : primaryDetail.getItemAuditLog()) {
+                System.out.format("%30s", auditLog);
+                System.out.println();
+            }
 
-           System.out.println();
-           System.out.format("%20s", "ImageName");
-           System.out.println();
-           for(String imageName:primaryDetail.getItemImageName()) {
-               System.out.format("%20s", imageName);
-               System.out.println();
-           }
+            System.out.println();
+            System.out.format("%20s", "ImageName");
+            System.out.println();
+            for (String imageName : primaryDetail.getItemImageName()) {
+                System.out.format("%20s", imageName);
+                System.out.println();
+            }
 
-           System.out.println();
-           System.out.format("%20s%10s", "date","ItemSold");
-           System.out.println();
-           for(Map.Entry entry:primaryDetail.getItemNoOfItemSold().entrySet()) {
-               System.out.format("%20s%10s", entry.getKey(),entry.getValue());
-               System.out.println();
-           }
+            System.out.println();
+            System.out.format("%20s%10s", "date", "ItemSold");
+            System.out.println();
+            for (Map.Entry entry : primaryDetail.getItemNoOfItemSold().entrySet()) {
+                System.out.format("%20s%10s", entry.getKey(), entry.getValue());
+                System.out.println();
+            }
 
-           System.out.println();
-       }
 
+        }
     }
 }

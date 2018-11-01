@@ -14,4 +14,20 @@ public class ItemDetails {
     @JoinTable(name="ItemStockDetail",joinColumns = @JoinColumn(name="ItemId"))
     @MapKeyColumn(name="date")
     private  Map<Date,ItemStockDetail> itemStockDetail=new HashMap<>();
+
+    public Set<Address> getWarehouseAddress() {
+        return warehouseAddress;
+    }
+
+    public void setWarehouseAddress(Set<Address> warehouseAddress) {
+        this.warehouseAddress = warehouseAddress;
+    }
+
+    public Map<Date, ItemStockDetail> getItemStockDetail() {
+        return itemStockDetail;
+    }
+
+    public void setItemStockDetail(Map<Date, ItemStockDetail> itemStockDetail) {
+        this.itemStockDetail = itemStockDetail;
+    }
 }

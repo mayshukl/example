@@ -5,13 +5,20 @@
     <persistence-unit name="EmbeddedExample">
         <class>org.unnati.example.entities.Item</class>
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
+
+          <!-- hsql In Memory database setting -->
+    <!--        <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
             <property name="javax.persistence.jdbc.url"    value="jdbc:hsqldb:mem:hello-world" />
             <property name="javax.persistence.jdbc.user" value="sa" />
             <property name="javax.persistence.jdbc.password" value="" />
-
             <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
-
+    -->
+            <!-- MySql Database setting -->
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+            <property name="javax.persistence.jdbc.url"    value="jdbc:mysql://localhost:3306/examples" />
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="root" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>
 
             <!-- Scan for annotated classes and Hibernate mapping XML files -->
 
