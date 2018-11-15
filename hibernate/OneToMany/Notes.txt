@@ -1,4 +1,0 @@
-1. If we are referring another entity from an entity,
-    We have to tell the relationship between entities(like ManytoOne) otherwise , it will throw Exception "Could not determine the type for Entity.class at table for column"
-
-2.
