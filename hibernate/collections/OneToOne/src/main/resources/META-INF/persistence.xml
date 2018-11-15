@@ -1,0 +1,36 @@
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.2"
+             xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_2.xsd">
+    <!-- Define persistence unit -->
+    <persistence-unit name="OneToOneExample">
+        <class>org.unnati.example.entities.Item</class>
+        <class>org.unnati.example.entities.ItemType</class>
+        <class>org.unnati.example.entities.ItemDetails</class>
+        <class>org.unnati.example.entities.Warehouse</class>
+        <class>org.unnati.example.entities.Address</class>
+
+        <properties>
+
+            <!-- hsql In Memory database setting -->
+            <property name="javax.persistence.jdbc.driver" value="org.hsqldb.jdbcDriver" />
+            <property name="javax.persistence.jdbc.url"    value="jdbc:hsqldb:mem:hello-world" />
+            <property name="javax.persistence.jdbc.user" value="sa" />
+            <property name="javax.persistence.jdbc.password" value="" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
+
+            <!-- MySql Database setting -->
+            <!--   <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+               <property name="javax.persistence.jdbc.url"    value="jdbc:mysql://localhost:3306/examples" />
+               <property name="javax.persistence.jdbc.user" value="root" />
+               <property name="javax.persistence.jdbc.password" value="root" />
+               <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL57Dialect"/>-->
+
+            <!-- Scan for annotated classes and Hibernate mapping XML files -->
+
+
+            <property name="hibernate.hbm2ddl.auto" value="create"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>

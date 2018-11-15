@@ -1,0 +1,5 @@
+We can define OneToOne  by 3 ways
+
+1 .   Sharing primary Key : PrimaryKeyJoinColumn(Strategy "foreign" is only used for id generation in this case )
+2 .   Foreign Key join Column : As Warehouse#address (A foreign key column will be generated in Warehouse table)
+3 .   Join Table : this use @JoinTable (A new table will be created to hold the primary key of both tables)
