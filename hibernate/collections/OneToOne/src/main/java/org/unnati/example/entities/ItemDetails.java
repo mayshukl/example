@@ -22,9 +22,10 @@ public class ItemDetails {
     private double salesPrice;
     private double purchasePrice;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.LAZY,optional = false)
     @PrimaryKeyJoinColumn
     private Item item;
+
 
     public int getId() {
         return id;

@@ -9,6 +9,8 @@ public class Warehouse {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    private  String name;
+
     /**
      * unique -> No 2 Warehouse can have same addressID
      * nullable -> Can not be null
@@ -32,5 +34,13 @@ public class Warehouse {
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

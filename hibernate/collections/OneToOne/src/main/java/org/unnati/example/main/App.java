@@ -65,6 +65,7 @@ public class App {
         address.setCountry("NY");
 
         Warehouse warehouse=new Warehouse();
+        warehouse.setName("Warehouse1");
         warehouse.setAddress(address);
 
         item.setWarehouse(warehouse);
@@ -73,12 +74,24 @@ public class App {
 
     private void getItem(){
        List<Item> items=dao.getAll("Item");
-        System.out.println("=============================================================");
-        items.get(0).getItemDetail();
-        System.out.println("=============================================================");
-        items.get(0).getWarehouse();
-        System.out.println("=============================================================");
-        items.get(0).getWarehouse().getAddress();
+        System.out.println("=========================Fetch Item====================================");
+        Item item=items.get(0);
+        System.out.println("=========================Fetch Item Type Lazy====================================");
+        System.out.println("Item type "+item.getItemType().getId());
+        item.getItemType().getItemType();
+        System.out.println("==========================Fetch Item Detail ===================================");
+        ItemDetails itemDetails=item.getItemDetail();
+        int id=itemDetails.getId();
+        dao.getEntityManager().clear();
+        itemDetails=dao.getById("ItemDetails",id);
+        System.out.println("==========================Fetch User from item Details=======================");
+        item=itemDetails.getItem();
+        item.getName();
+        System.out.println("=============================Fetch Warehouse Details================================");
+         item.getWarehouse().getName();
+        System.out.println("=============================Fetch Address Details================================");
+        item.getWarehouse().getAddress().getFlat();
     }
+
 
 }

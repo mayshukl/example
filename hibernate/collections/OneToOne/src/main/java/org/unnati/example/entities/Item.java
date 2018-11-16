@@ -23,7 +23,7 @@ public class Item {
      * mappedBy  --> This will delegate the responsibility to ItemDetails.So No column will be added
      *
      */
-    @OneToOne(mappedBy = "item",cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "item",cascade = CascadeType.PERSIST)
     private ItemDetails itemDetail;
 
 
@@ -35,6 +35,7 @@ public class Item {
     @OneToOne(cascade = CascadeType.PERSIST,fetch = FetchType.LAZY)
     @JoinTable(name="ItemWarehouse",joinColumns =@JoinColumn(name="ItemId"),inverseJoinColumns = @JoinColumn(name="WarehouseId"))
     private Warehouse warehouse;
+
 
 
     public int getId() {

@@ -2,4 +2,9 @@ We can define OneToOne  by 3 ways
 
 1 .   Sharing primary Key : PrimaryKeyJoinColumn(Strategy "foreign" is only used for id generation in this case )
 2 .   Foreign Key join Column : As Warehouse#address (A foreign key column will be generated in Warehouse table)
+                                In this case if you try to load object with getId call. It would not load.
 3 .   Join Table : this use @JoinTable (A new table will be created to hold the primary key of both tables)
+
+
+
+Lazy loading : https://stackoverflow.com/questions/1444227/making-a-onetoone-relation-lazy
