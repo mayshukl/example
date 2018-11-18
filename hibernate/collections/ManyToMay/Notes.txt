@@ -1,0 +1,6 @@
+ManytoMany Can be implemented using a link table .
+Link tables can be defined by 2 ways
+
+1. Join table annotation
+2.  Intermediate Entity (In this project PurchaseOrderItem Entity)
+
