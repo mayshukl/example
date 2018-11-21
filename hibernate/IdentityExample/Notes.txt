@@ -1,0 +1,3 @@
+There can 2 types of identity keys
+1. Natural Key   : A key whose meaning exist in real world like 'UserName'.
+2. Surrogate Key : a Key whose meaning does not exist in real world like 'Guid'
