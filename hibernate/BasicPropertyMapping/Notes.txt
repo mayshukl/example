@@ -1,0 +1,27 @@
+This application shows the use column mapping
+
+1. Basic ( optional = false)  --> This is same as @Column(nullable=false)
+2. Transient                  --> will stop the field to participate in persistence.
+3 org.hibernate.annotations.Formula --> This annotation allow to add SQL function at time of select query .
+                                        This field will not be having any effect on INSERT and UPDATE statement.
+                                        No Corresponding item needed in table.
+
+4 . org.hibernate.annotations.ColumnTransformer -> This allows the conversion between the database column and entity field.
+                                                    As you can store item'sprice in $ in db and in $RS in application.
+                                                    Sql Function can also be used.
+
+5. Temporal --> This help to find the correct data type in database column
+
+6 CreationTimestamp  -->  Insert the creation time in the column.
+7 UpdateTimestamp     --> update the updated time in the column on modification of row.
+
+8  ColumnDefault   --> this annotation will set default value of column in DDL.
+
+9. org.hibernate.annotations.Generated(GenerationTime.INSERT) --> This will tell hibernate that associated fields value will be generated in database by trigger .
+                                                    so Get the value of column by querying . Like     select  bid_.initialBidAmount as initialB3_0_ from Bid bid_ where bid_.id=?
+
+10 . Enumerated(EnumType.STRING)    -> This will force the hibernate to store the value in STRING form instead of enum's index(ORDINAL) .
+
+11. Lob    --> This tells hibernate to store the value in clob/blob column if domain model field type is byte / String
+
+11. java.sql.Clob/Blob --> store the value in blob and clob
