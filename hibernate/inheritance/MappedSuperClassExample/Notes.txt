@@ -1,0 +1,4 @@
+1. To query the Mapped Super Class , you have to used full qualified Name;
+
+2. Mapped Super class can not be used in Associations.
+
