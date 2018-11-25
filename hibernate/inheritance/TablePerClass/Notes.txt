@@ -1,0 +1,5 @@
+1. This class gives the option of polymorphic associations.
+
+2. Advised not to use if you want to query BankingDetails very frequently.
+
+3. Id column is mandatory is Super class.
