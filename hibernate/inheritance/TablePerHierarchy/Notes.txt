@@ -1,0 +1,11 @@
+1. There can be a lot of not null column.
+
+2. This strategy should be used if subclasses differs only in behaviour and not in columns.
+
+3. This will not generate a normalized table
+
+5. InheritanceType.SINGLE_TABLE --> This will create single tale for all classes in hierarchy.
+6. DiscriminatorColumn          --> This is used to name the DiscriminatorColumn(DEFAULT name is "DTYPE")
+7. DiscriminatorValue           --> This assign the DiscriminatorValue to a class
+8. org.hibernate.annotations.DiscriminatorFormula   -> Alternative of DiscriminatorColumn .
+                                                    but this will not create a column in DB
