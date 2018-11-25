@@ -1,0 +1,6 @@
+1.  This use join to query the entity.
+
+2. for this strategy , you have to consider the trade off between JOIN vs UNION
+
+3. This strategy should be used if you have many different columns in subclasses
+
