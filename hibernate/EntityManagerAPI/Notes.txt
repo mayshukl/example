@@ -1,0 +1,34 @@
+1. When will insert SQL statement get executed?
+   1. EntityManager#persist
+   2. EntityManager#getTransaction#commit
+
+   Sql Statement will get fired at the time of persist only if id is getting generated in database
+   otherwise sql insert will get fired at the time of commit.
+
+   Main Purpose of persist method is getting Id of entity at time of insert.
+
+2. If we modify already persisted entity, an additional update statement will get fired.
+
+3. Difference between EntityManager#find and EntityManager#getReference
+    find will query from db if entity is not present in cache.
+    getReference return a proxy object.
+
+4. EntityManager#Remove - delete the entity.
+5. hibernate.use_identifier_rollback --> reset the identifier value in case of removal
+5. EntityManager#Refresh - discard the new changes on detached entity. Load it from db
+6. EntityManager#Merge - Load or create new entity from db and apply the changes made on detached entity.
+
+7. javax.persistence.Query --< this interface provide the option to readonly entities . There wil not allow any update on fetched entity.This is a bit faster also.
+                               This does not do dirty checking.
+
+8 Synchronization occurs in following events
+  1. TXN#commit
+  2. Query#list not entityManager#find
+  3. entityManager#flush
+
+  This can be customized by setting entityManager#setFlushMode.
+
+9. entityManager#unwrap gives underlying implementation of session.
+
+
+
