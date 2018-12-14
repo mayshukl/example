@@ -1,0 +1,18 @@
+1. By Default Hibernate's isolation mode is read-commited.
+2. First Level Cache(Persistence context) stores the already read data. so repeatable read is also possible .(Phantom read is not possible)
+3. Using the versioning gives the "first commit wins" . For second commit , it will throw "Optimistic Lock Exception"
+4. for Versioning "Date" can also be tried but timestamp does not have the accuracy of nanosecond.
+   so it is recommended to use long column.
+
+5. org.hibernate.annotations.OptimisticLock(excluded = true) --< can be used if you do not want to update the version on the update of some field.
+
+6.following set of annotation will also give same exp as version
+  org.hibernate.annotations.OptimisticLocking
+  org.hibernate.annotations.DynamicUpdate
+
+7 If we create a query Object with Lock Mode a transaction is required.
+
+8 . OPTIMISTIC_LOCK does not lock the database , but gives locking by comparing the version of entities in database and Persistence context.
+    Locking can of READ or WRITE type
+9.  PESSIMISTIC does the locking on rows.
+   Locking can of READ or WRITE type. In both cases JPa appends some clause in query to tell the db to lock the rows.
