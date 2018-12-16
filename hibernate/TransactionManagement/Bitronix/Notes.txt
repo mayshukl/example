@@ -1,0 +1,16 @@
+1. resource.mysql in datasource.propeties represents  one data-source . <code>TransactionManagerServices.getResourceLoader().init()</code>
+  will create one PoolingDataSource with the configuration mentioned in file.
+
+
+2. "resource" in datasouces.properties  represents a ResourceBean.
+
+
+### Bitronix tutorial
+     https://github.com/bitronix/btm/blob/master/btm-docs/src/main/asciidoc/Hibernate2x.adoc
+     https://www.hhutzler.de/blog/a-deeper-dive-into-jpa-2-phase-commit-2pc-and-rac/
+
+
+Following trigger can be used to throw exception while insert
+        CREATE TRIGGER stop_DELETE BEFORE INSERT ON item
+        FOR EACH ROW
+          SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT='insert not allowed!'
