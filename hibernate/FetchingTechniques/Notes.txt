@@ -1,0 +1,35 @@
+1. Fetching type can be of two types
+    1. Eager
+    2. Lazy.
+    XtoOne is Eager by default.
+    XtoMany is lazy by default.
+    ElementCollection is Lazy by Default
+
+   Advise: We should try keep all the collection lazy by default.
+
+2. org.hibernate.annotations.LazyCollectionOption.EXTRA --> This gives more laziness to collection, for collections
+    size,isEmpty and contains  will also fire the corresponding SQL ,but will not load the entity in persistent Context.
+
+3. Lazy Loading can also be achieved by ITERCEPTION.
+
+4. Classic Hibernate Fetching Problem
+    1. n+1 select problem
+    2. Cartesian Product Problem
+
+5. Entity can be fetched in batches also(org.hibernate.annotations.BatchSize).This will reduce the number of call
+
+6. Fetch Strategy can be of three types
+   1. org.hibernate.annotations.FetchMode.SELECT  -- > Separate SQL select will be fired
+   1. org.hibernate.annotations.FetchMode.JOIN    -- > Separate QUERY with inner joinn will be fired
+   2. SUBSELECT                                  ----> This will use subquery to fetch the data and will not be applicable in
+                                                       XToOne
+
+7. Types of Fetch Profile
+    1. Hibernate Fetch Profile : This is used to define FetchMode
+    2. Entity Graph          : This is used to define the graph of fetch Mode.
+
+    Hibernate Fetch Profile ONLY support JOIN mode .
+
+    With the help of SubGraph , deep Entity Graph can be created.
+
+    Both Fetch Profile can be applied to same unit of work.
