@@ -4,6 +4,8 @@
 
 2. "resource" in datasouces.properties  represents a ResourceBean.
 
+3. Bitronix comes with a JNDI server . It will picks the jndi.properties from resource folder.
+
 
 ### Bitronix tutorial
      https://github.com/bitronix/btm/blob/master/btm-docs/src/main/asciidoc/Hibernate2x.adoc
