@@ -1,0 +1,47 @@
+1. JPA provides entity life cycle callback methods for all Event
+
+    1. LOAD -- This Event is fired on loading already persisted entity.
+                A. PreLoad callback is not available
+                B. PostLoad runs after the load of an entity
+
+    2. PERSIST -- This Event is fired on inserting new entity
+                  A. PrePersist  runs when persist or merge  is called on transient entity
+                  B. PostPersist  runs  when context is synchronised with database
+
+    3. UPDATE -- This Event is fired on loading already loaded entity.
+                 A. PreUpdate runs before flush
+                 B. PostUpdate runs after flush
+
+    4. REMOVE -- This Event is fired on REMOVING already persisted entity.
+                 A. PreUpdate runs when remove is called
+                 B. PostUpdate runs after flush
+
+
+2. Listeners can be defined in 2 places
+    a. In a separate class and add this to "EntityListeners" annotations
+    b. In the entity class itself.
+
+3. You can add call back methods in entity super Class and that will be applied on all entities of the hierarchy . But an entity can
+  exclude this by using annotation "ExcludeSuperClassListener".
+
+4. Oder of listeners
+     a. All Default Listeners in declared Order
+     b. Listeners declared with @EntityListeners annotation
+     c. Callback method declared in entity class first and in the entity at the last.(More Generic First)
+
+
+5. org.hibernate.EmptyInterceptor --> An interceptor that does nothing. May be used as a base class for application-defined custom interceptors
+
+   Following setting can be used to set interceptor
+   HashMap<String,String> properties=new HashMap<>();
+   properties.put(org.hibernate.jpa.AvailableSettings.INTERCEPTOR, <INTERCEPTOR CLASS NAME/>.class.getName());
+   entityManager = emf.createEntityManager(properties);
+
+   OR this cab be configured in persistence.xml.
+   i.e. <property name="hibernate.ejb.interceptor" value="org.unnati.example.entities.interceptor.HibernateInterceptor"/>
+
+6. Custom HibernateEventListener can also be created . List of all Events can be found https://docs.jboss.org/hibernate/entitymanager/3.5/reference/en/html/configuration.html#d0e865
+   Default Listener classes can be found in "org.hibernate.event.spi" or "org.hibernate.event.internal" package.
+
+7 Hibernate Core event system can be used to listener a particular event . This can used with Interceptor or in place of interceptor
+  https://docs.jboss.org/hibernate/orm/3.3/reference/en/html/events.html#objectstate-events
