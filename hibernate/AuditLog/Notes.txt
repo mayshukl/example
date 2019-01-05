@@ -1,0 +1,7 @@
+1. REVINFO table is used to collect the revision centrally.
+
+2. @org.hibernate.envers.Audited(targetAuditMode = RelationTargetAuditMode.NOT_AUDITED) -- This configuration is used to map
+                               non audited entity in audited entity.
+
+
+3. Find operation with delete revision will return null
