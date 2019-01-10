@@ -1,0 +1,66 @@
+1. There are three types of Query Interface
+    a. Query
+    b. TypedQuery
+    c. StoredProcedureQuery
+
+2. There are mainly 2 ways to get query object
+    1. JPQL,NATIVE SQL
+    2. Criteria
+
+2.5 EntityManager#createNativeQuery will return persisted entity result only if Entity class overloaded version of method is used.
+
+3. Criteria can be associated with EntityMangerFactory. This criteria can be used across different EntityManager
+
+4. TEMPORAL bind parameter need some special care i.e. query.setParameter("date",new Date(), TemporalType.DATE)
+
+5. Following technique can be used to get number of rows in query without loading the data in memory
+          org.hibernate.Query hbmQuery=queryForScroll.unwrap(org.hibernate.jpa.HibernateQuery.class).getHibernateQuery();
+          org.hibernate.ScrollableResults cursor=hbmQuery.scroll(ScrollMode.SCROLL_INSENSITIVE);
+          cursor.last();// This will not retrieve the data in memory
+          int rowCount=cursor.getRowNumber()+1;
+
+     This trick does not work with MSSQL/ORACLE .
+
+6. Pagination can used as : query.setFirstResult(5).setMaxResults(10);
+    "setFirstResult" will add "offset" and "limit" keyword in query.
+
+7.  org.hibernate.Query#iterate can be used to get list of id of an Entity.
+
+8 . NamedQuery can not defined in package-json. This will only work with @Entity class
+
+9. Query Hint can be used and define to set timeout,flush mode, retrieveMode , storeMode,fetch size,readonly . Read more about query Hint-->  https://thoughts-on-java.org/11-jpa-hibernate-query-hints-every-developer-know/
+
+10 . Path Expression in JPQL , criteria will not pass Collections like item.bids.
+
+11 . Following method can be applied on a collection
+     1. IsEmpty  2. Size  3.IsMember
+
+     If collection is Map , then Key(), Value(),entry() functions can also be used
+
+12 . JPA has some already defined sql Function See Details : http://www.java2s.com/Tutorials/Java/JPA/4520__JPA_Query_Function.htm
+
+13. Aggregator Function count(),avg(),sum(),min(),max() -- All function can be used in Projection only.
+    Projection can have column only if column name is specified in group by clause
+    if used without group by , only one row will be returned.
+
+14. hibernate does not support entity path expression in group By i.e. "group by i" . we have to define it like " group by i.name ,i.id" etc.
+
+
+15 . Join Strategy Type
+     i    --> Implicit Join
+              This type of join will work if the relationship is XtoOne. Foreign key condition will be appended in where clause
+     ii   --> Explicit Join
+              Default Join type is Inner join.(Condition of the join gets decided on the basis of mapping of attributes)
+              Other Types of join can be Left Outer join or right out join
+
+     iii  --> dynamic Eager Fetching
+               This Says that any lazy mapping can also be fetched with join using "fetch" method in jpa.
+               Pagination will not be applicable in this kind of query
+
+     iv   --> Thetha styles join
+              this type of join alo possible if there is no direct mapping(Foreign Key relationship) between 2 entities.
+
+16.  CriteriaQuery can have subquery also .
+
+17 . There are three types of Quantifiers
+       ALL, ANY , EXISTS
